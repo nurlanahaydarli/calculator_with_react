@@ -29,9 +29,12 @@ const Calculator = () => {
         if (result) {
             setFirstNumber(`${result}`)
         }
-        setIsOperatorClick(true)
-        setOperator(operator)
-        setSecondNumber('')
+        if(firstNumber){
+            setIsOperatorClick(true)
+            setOperator(operator)
+            setSecondNumber('')
+        }
+
     }
 
     function handleResult() {
