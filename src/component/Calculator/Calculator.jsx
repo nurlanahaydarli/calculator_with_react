@@ -15,7 +15,7 @@ const Calculator = () => {
             setIsOperatorClick(false)
             setResult("")
         }
-        if (result && !operator && !isOperatorClick) {
+        if ((result || result === 0) && !operator && !isOperatorClick) {
             setFirstNumber('')
             setFirstNumber((prev) => prev + num)
         } else if (!isOperatorClick && !operator && !result) {
@@ -29,7 +29,7 @@ const Calculator = () => {
         if (result) {
             setFirstNumber(`${result}`)
         }
-        if(firstNumber){
+        if (firstNumber || firstNumber ===  0) {
             setIsOperatorClick(true)
             setOperator(operator)
             setSecondNumber('')
@@ -52,6 +52,7 @@ const Calculator = () => {
             res = parseFloat(firstNumber) / parseFloat(secondNumber)
         }
         let num = res % 1 !== 0 ? parseFloat(res).toFixed(9) : res
+        setFirstNumber(num)
         setResult(num)
         setOperator('')
         setIsOperatorClick(false)
@@ -65,9 +66,15 @@ const Calculator = () => {
         setIsOperatorClick(false)
         setResult('')
     }
-    function handleClearEnd(){
+
+    function handleClearEnd() {
         console.log('here')
     }
+
+    // console.log(result,'res')
+    // console.log(firstNumber,'firstNumber')
+    // console.log(secondNumber,'secondNumber')
+
     return (
         <>
             <div className="container">
@@ -83,7 +90,7 @@ const Calculator = () => {
                         </div>
 
                         <div className="display-operations">
-                            {result ? result : <>{firstNumber} {operator} {secondNumber}</>}
+                            {result || result === 0 ? result : <>{firstNumber} {operator} {secondNumber}</>}
                         </div>
                     </div>
 
